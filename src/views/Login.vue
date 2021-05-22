@@ -25,7 +25,7 @@
       <br />
 
       <button
-        class="bg-purple font-bold text-black text-xl p-3"
+        class="bg-purple-900 font-bold text-white text-xl p-3"
         type="submit"
         @click="login()"
       >

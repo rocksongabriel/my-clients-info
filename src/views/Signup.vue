@@ -55,7 +55,7 @@
 
       <button
         @click="signup()"
-        class="px-4 py-2 font-bold bg-purple text-black"
+        class="px-4 py-2 font-bold bg-purple-900 text-black"
       >
         Signup
       </button>

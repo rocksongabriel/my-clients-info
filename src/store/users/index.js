@@ -6,10 +6,6 @@ import "firebase/firestore";
 
 import { auth, usersCollection } from "../../../firebase";
 
-const state = {
-  userProfile: {},
-};
-
 const actions = {
   async login({ dispatch }, form) {
     const { user } = await auth.signInWithEmailAndPassword(
@@ -33,6 +29,7 @@ const actions = {
       username: form.username,
       first_name: form.first_name,
       last_name: form.last_name,
+      email: form.email,
     });
 
     // fetch user data
@@ -41,6 +38,7 @@ const actions = {
   async fetchUserProfile({ commit }, user) {
     // fetch user profile
     const userProfile = await usersCollection.doc(user.uid).get();
+    console.log(userProfile);
 
     // commit user profile to state
     commit("SET_USER_PROFILE", userProfile.data());
@@ -51,18 +49,21 @@ const actions = {
 };
 
 const mutations = {
-  SET_USER_PROFILE({ state }, payload) {
-    state.userProfile = payload;
+  SET_USER_PROFILE(state, payload) {
+    state.user = payload;
+    console.log(payload);
   },
+};
+
+const state = {
+  user: {},
 };
 
 const getters = {};
 
-const usersModule = {
-  state,
+export default {
   actions,
   mutations,
+  state,
   getters,
 };
-
-export default usersModule;
