@@ -1,13 +1,18 @@
-import * as firebase from "firebase/app";
+// import firebase from "firebase/app";
 import router from "@/router/index";
 
+import "firebase/auth";
+import "firebase/firestore";
+
+import { auth, usersCollection } from "../../../firebase";
+
 const state = {
-  usersProfile: {},
+  userProfile: {},
 };
 
 const actions = {
   async login({ dispatch }, form) {
-    const { user } = await firebase.auth.signInWithEmailAndPassword(
+    const { user } = await auth.signInWithEmailAndPassword(
       form.email,
       form.password
     );
@@ -15,9 +20,27 @@ const actions = {
     // fetch user profile and set in state
     dispatch("fetchUserProfile", user);
   },
+  async signup({ dispatch }, form) {
+    // sign user up
+    console.log(form);
+    const { user } = await auth.createUserWithEmailAndPassword(
+      form.email,
+      form.password
+    );
+
+    // create user profile object in userCollections
+    await usersCollection.doc(user.uid).set({
+      username: form.username,
+      first_name: form.first_name,
+      last_name: form.last_name,
+    });
+
+    // fetch user data
+    dispatch("fetchUserProfile", user);
+  },
   async fetchUserProfile({ commit }, user) {
     // fetch user profile
-    const userProfile = await firebase.usersCollection.doc(user.uid).get();
+    const userProfile = await usersCollection.doc(user.uid).get();
 
     // commit user profile to state
     commit("SET_USER_PROFILE", userProfile.data());

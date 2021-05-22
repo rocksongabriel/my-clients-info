@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
@@ -60,3 +62,7 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
+
+.input {
+    @apply border p-2 text-xl my-1;
+}

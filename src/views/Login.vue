@@ -9,6 +9,7 @@
         id="email1"
         placeholder="youremail@domain.com"
         v-model.trim="loginForm.email"
+        class="input"
       />
       <br />
 
@@ -19,10 +20,17 @@
         id="password1"
         placeholder="***********"
         v-model.trim="loginForm.password"
+        class="input"
       />
       <br />
 
-      <button type="submit" @click="login()">Login</button>
+      <button
+        class="bg-purple font-bold text-black text-xl p-3"
+        type="submit"
+        @click="login()"
+      >
+        Login
+      </button>
       <div>
         <a href="">Forgot password</a> |
         <a href="">Create account</a>
