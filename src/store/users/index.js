@@ -46,6 +46,18 @@ const actions = {
     // change route to dashboard
     router.push({ name: "Dashboard" });
   },
+  async logout({ state }) {
+    await auth
+      .signOut()
+      .then(() => {
+        console.log("Sign out successful");
+        window.localStorage.removeItem("vuex");
+        state.user = {};
+      })
+      .catch((error) => {
+        console.log("An error occurred", error.response.data);
+      });
+  },
 };
 
 const mutations = {
@@ -59,7 +71,9 @@ const state = {
   user: {},
 };
 
-const getters = {};
+const getters = {
+  userData: (state) => state.user,
+};
 
 export default {
   actions,

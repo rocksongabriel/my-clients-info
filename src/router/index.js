@@ -10,9 +10,9 @@ const routes = [
     path: "/",
     name: "Dashboard",
     component: Dashboard,
-    meta: {
-      requiresAuth: true,
-    },
+    // meta: {
+    //   requiresAuth: true,
+    // },
   },
   {
     path: "/login",
@@ -46,3 +46,5 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
+// ! - add a working navigation guard
