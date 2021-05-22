@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.input {
+    @apply border p-2 text-xl my-1;
+}

@@ -63,6 +63,3 @@
   * @import "utilities/skew-transforms";
   */
 
-.input {
-    @apply border p-2 text-xl my-1;
-}
