@@ -1,16 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav" class="text-blue-600 text-xl font-bold underline p-2">
-      <router-link :to="{ name: 'Dashboard' }">Dashboard</router-link> |
-      <router-link :to="{ name: 'Login' }">Login</router-link> |
-      <router-link :to="{ name: 'Signup' }">Signup</router-link>
+    <Navbar />
+
+    <div class="">
+      <router-view />
     </div>
-    <router-view />
+
+    <Footer />
   </div>
 </template>
 
 <script>
-export default {};
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    Navbar,
+    Footer,
+  },
+};
 </script>
 
 <style scoped></style>
