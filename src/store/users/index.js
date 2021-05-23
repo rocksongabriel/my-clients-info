@@ -27,8 +27,6 @@ const actions = {
     // create user profile object in userCollections
     await usersCollection.doc(user.uid).set({
       username: form.username,
-      first_name: form.first_name,
-      last_name: form.last_name,
       email: form.email,
     });
 
