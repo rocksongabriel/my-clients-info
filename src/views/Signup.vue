@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-around">
     <form
-      class="bg-gray-300 p-8 shadow-2xl mt-16 md:w-1/2 w-5/6 lg:w-1/4"
+      class="bg-gray-300 p-8 shadow-2xl mt-16 md:w-1/2 w-5/6 lg:w-2/5"
       @submit.prevent
     >
       <div class="flex justify-around">
