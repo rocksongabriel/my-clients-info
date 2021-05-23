@@ -1,64 +1,60 @@
 <template>
-  <div>
-    <form class="container" @submit.prevent>
-      <h1>Signup</h1>
+  <div class="flex justify-around">
+    <form
+      class="bg-gray-300 p-8 shadow-2xl mt-16 md:w-1/2 w-5/6 lg:w-1/4"
+      @submit.prevent
+    >
+      <div class="flex justify-around">
+        <img
+          class="rounded-full shadow-2xl"
+          src="../assets/avatar4.png"
+          alt=""
+          style="height: 80px; width: 80px"
+        />
+      </div>
 
-      <label for="username">Username</label> <br />
-      <input
-        type="text"
-        name="username"
-        id="username"
-        v-model.trim="signupForm.username"
-        class="input"
-      />
-      <br />
+      <div class="mt-2">
+        <label for="username" class="form-label">Username</label> <br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          v-model.trim="signupForm.username"
+          class="input"
+        />
+      </div>
 
-      <label for="email2">Email</label> <br />
-      <input
-        type="email"
-        name="email"
-        id="email2"
-        v-model.trim="signupForm.email"
-        class="input"
-      />
-      <br />
+      <div class="mt-3">
+        <label for="email2" class="form-label">Email</label> <br />
+        <input
+          type="email"
+          name="email"
+          id="email2"
+          v-model.trim="signupForm.email"
+          class="input"
+        />
+      </div>
 
-      <label for="first_name">First Name</label> <br />
-      <input
-        type="text"
-        name="first_name"
-        id="first_name"
-        v-model.trim="signupForm.first_name"
-        class="input"
-      />
-      <br />
+      <div class="mt-3">
+        <label for="password2" class="form-label">Password</label> <br />
+        <input
+          type="password"
+          name="password"
+          id="password2"
+          v-model.trim="signupForm.password"
+          class="input"
+        />
+      </div>
 
-      <label for="last_name">Last Name</label> <br />
-      <input
-        type="text"
-        name="last_name"
-        id="last_name"
-        v-model.trim="signupForm.last_name"
-        class="input"
-      />
-      <br />
+      <button @click="signup()" class="btn-primary w-full my-4">Signup</button>
 
-      <label for="password2">Password</label> <br />
-      <input
-        type="password"
-        name="password"
-        id="password2"
-        v-model.trim="signupForm.password"
-        class="input"
-      />
-      <br />
-
-      <button
-        @click="signup()"
-        class="px-4 py-2 font-bold bg-purple-900 text-black"
-      >
-        Signup
-      </button>
+      <div class="flex justify-around">
+        <span class="text-blue-600 font-medium text-lg"
+          ><router-link :to="{ name: 'Login' }"
+            >already have an account
+          </router-link></span
+        >
+      </div>
     </form>
   </div>
 </template>
@@ -71,8 +67,6 @@ export default {
       signupForm: {
         username: "",
         email: "",
-        first_name: "",
-        last_name: "",
         password: "",
       },
     };
@@ -82,8 +76,6 @@ export default {
       this.$store.dispatch("signup", {
         username: this.signupForm.username,
         email: this.signupForm.email,
-        first_name: this.signupForm.first_name,
-        last_name: this.signupForm.last_name,
         password: this.signupForm.password,
       });
     },
