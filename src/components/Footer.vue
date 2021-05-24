@@ -4,7 +4,7 @@
     -->
   <footer
     class="
-      bg-gray-900
+      bg-gray-800
       lg:p-10
       p-3
       flex
@@ -40,30 +40,30 @@
 
     <div class="text-white text-xl mb-4 lg:mb-0 flex flex-col justify-between">
       <p class="text-center">
-        Built with &#10084; by:
+        Built with <span class="text-red-800">&#10084;</span> by:
         <span class="text-yellow-500">{{ my_name }}</span>
       </p>
       <p class="">
         Github:
-        <a href="https://github.com/rocksongabriel"
+        <a class="text-blue-600" href="https://github.com/rocksongabriel"
           >https://github.com/rocksongabriel</a
         >
       </p>
       <p class="">
         LinkedIn:
-        <a href="http://linkedin.com/gabrielrockson"
+        <a class="text-blue-600" href="http://linkedin.com/gabrielrockson"
           >http://linkedin.com/gabrielrockson</a
         >
       </p>
       <p class="">
         Twitter:
-        <a href="http://twitter.com/gabe_rockson"
+        <a class="text-blue-600" href="http://twitter.com/gabe_rockson"
           >http://twitter.com/gabe_rockson</a
         >
       </p>
       <p class="">
         Email:
-        <a href="mailto:thegabrielrockson@gmail.com"
+        <a class="text-blue-600" href="mailto:thegabrielrockson@gmail.com"
           >thegabrielrockson@gmail.com</a
         >
       </p>

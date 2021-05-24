@@ -10,24 +10,26 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    children: [
+      {
+        path: "/login",
+        name: "Login",
+        component: () =>
+          import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
+      },
+      {
+        path: "/signup",
+        name: "Signup",
+        component: () =>
+          import(/* webpackChunkName: "login" */ "@/views/Signup.vue"),
+      },
+    ],
   },
   {
     path: "/dashboard",
     name: "Dashboard",
     component: () =>
       import(/* webpackChunkName: "login" */ "@/views/Dashboard.vue"),
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
-  },
-  {
-    path: "/signup",
-    name: "Signup",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/Signup.vue"),
   },
 ];
 
