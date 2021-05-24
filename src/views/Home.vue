@@ -2,13 +2,32 @@
   <div class="home">
     <Navbar />
 
-    <div v-show="$route.path == '/'" class="p-12 mx-10">
-      <h1 class="text-center font-bold text-gray-900 text-8xl py-8">
+    <!-- This is the content that loads when someone visits the homepage -->
+    <div v-show="$route.path == '/'" class="">
+      <h1
+        class="
+          text-center
+          font-bold
+          text-gray-900 text-5xl
+          md:text-8xl
+          py-8
+          md:px-12
+        "
+      >
         Manually scouting for freelance clients online and looking for a place
-        to enter the data quickly?
+        to enter and store the data quickly?
       </h1>
 
-      <h1 class="text-center font-semibold text-gray-800 text-7xl py-12 mx-5">
+      <h1
+        class="
+          text-center
+          font-semibold
+          text-gray-800 text-3xl
+          md:text-6xl
+          py-10
+          md:px-8
+        "
+      >
         Utilize my-clients-data to make your work easier
       </h1>
       <div class="flex justify-around">
@@ -16,8 +35,9 @@
           :to="{ name: 'Signup' }"
           class="
             p-6
-            bg-red-600
-            text-3xl
+            bg-red-700
+            text-xl
+            md:text-2xl
             font-bold
             text-white
             rounded-md
@@ -28,6 +48,7 @@
         >
       </div>
     </div>
+    <!-- Links related to the website aspect of the project will be loaded here -->
     <div>
       <router-view />
     </div>

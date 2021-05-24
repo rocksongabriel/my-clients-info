@@ -38,7 +38,16 @@
       </form>
     </div>
 
-    <div class="text-white text-xl mb-4 lg:mb-0 flex flex-col justify-between">
+    <div
+      class="
+        text-white text-base
+        md:text-lg
+        mb-4
+        lg:mb-0
+        flex flex-col
+        justify-between
+      "
+    >
       <p class="text-center">
         Built with <span class="text-red-800">&#10084;</span> by:
         <span class="text-yellow-500">{{ my_name }}</span>
