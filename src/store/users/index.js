@@ -50,6 +50,9 @@ const actions = {
       .then(() => {
         console.log("Sign out successful");
         window.localStorage.removeItem("vuex");
+
+        // take the user to the login page after sign out
+        router.push({ name: "Login" });
         state.user = {};
       })
       .catch((error) => {
