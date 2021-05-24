@@ -9,5 +9,9 @@ export default new Vuex.Store({
   modules: {
     users,
   },
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState({
+      key: "my-clients-info",
+    }),
+  ],
 });
