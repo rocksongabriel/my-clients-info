@@ -3,17 +3,8 @@
     <Navbar />
 
     <!-- This is the content that loads when someone visits the homepage -->
-    <div v-show="$route.path == '/'" class="">
-      <h1
-        class="
-          text-center
-          font-bold
-          text-gray-900 text-5xl
-          md:text-8xl
-          py-8
-          md:px-12
-        "
-      >
+    <div v-show="$route.path == '/'" class="lg:px-64 md:px-12">
+      <h1 class="text-center font-bold text-gray-900 text-5xl md:text-8xl py-8">
         Manually scouting for freelance clients online and looking for a place
         to enter and store the data quickly?
       </h1>
@@ -25,7 +16,6 @@
           text-gray-800 text-3xl
           md:text-6xl
           py-10
-          md:px-8
         "
       >
         Utilize my-clients-data to make your work easier
