@@ -3,192 +3,149 @@
     <TopNavBar />
 
     <!-- This is the main working area of the dashboard -->
-    <div>
+    <div class="bg-gray-200">
       <!-- row that has add new button -->
       <div class="flex justify-end py-4 px-7">
         <button
           class="px-4 py-2 text-lg font-extrabold bg-green-500 text-black"
+          @click="showForm()"
         >
           Add New
         </button>
       </div>
 
       <!-- this div will have the new form to add a new client data -->
-      <div class="flex justify-around py-4">
+      <div class="flex justify-around py-4" v-show="show_form">
         <!-- form to add new client data -->
         <!-- make the form responsive below 360px -->
-        <form class="bg-gray-200 space-y-2 md:w-3/4 lg:w-2/4 p-4">
-          <h1 class="text-center text-2xl md:text-2xl py-2 font-bold">
-            Add new client data
+        <form class="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+          <h1
+            class="
+              text-center text-gray-800 text-2xl
+              md:text-2xl
+              py-2
+              font-bold
+            "
+          >
+            Add New Client Data
           </h1>
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Company Name</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Company Name
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Addres of Company</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Company Website
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Owner Name</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Company Address
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Contact Name</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Owner Name
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Contact Email</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Contact Name
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Contact Phone</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Contact Email
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="email" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Contact Website</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Contact Phone
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Source of Info</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Source of Info
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Link to Source</label
-            >
-            <input
-              class="
-                p-2
-                md:w-2/3
-                text-lg
-                w-3/5
-                border border-gray-600
-                outline-none
-              "
-              type="text"
-            />
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Link to Source
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input class="form-input-1" id="inline-full-name" type="text" />
+            </div>
           </div>
 
-          <div class="w-full flex items-center justify-between">
-            <label class="font-medium font-serif text-lg text-gray-900" for=""
-              >Problem of Company</label
-            >
-            <textarea
-              class="w-3/5 md:w-2/3 border outline-none p-2 border-gray-600"
-              name=""
-              id=""
-              cols="30"
-              rows="7"
-            ></textarea>
+          <div class="md:flex md:items-center mb-3">
+            <div class="md:w-1/3">
+              <label class="form-label-1" for="inline-full-name">
+                Client Problem
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <textarea
+                class="form-input-1"
+                id="inline-full-name"
+                type="text"
+              />
+            </div>
           </div>
 
           <div class="flex justify-around">
-            <button class="px-4 py-2 text-xl bg-red-600 text-white my-2">
+            <button class="px-4 py-2 text-xl bg-green-700 text-white my-2">
               Add Client Data
             </button>
           </div>
@@ -212,7 +169,9 @@ import ClientsInfoCard from "../components/dashboard/ClientsInfoCard";
 export default {
   name: "Login",
   data() {
-    return {};
+    return {
+      show_form: true,
+    };
   },
   components: {
     TopNavBar,
@@ -224,6 +183,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    showForm() {
+      this.show_form = true;
     },
   },
 };
