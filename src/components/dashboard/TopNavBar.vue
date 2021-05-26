@@ -12,18 +12,25 @@
 
       <div class="space-x-2">
         <!-- user welcome message and logout button -->
-        <span class="text-gray-100 font-sans">Welcome gabriel</span>
-        <font-awesome-icon class="text-green-200 text-xl" icon="user" />
+        <span class="text-gray-100 font-sans"
+          >Welcome {{ userData.username }}</span
+        >
+        <font-awesome-icon class="text-green-400 text-xl" icon="user" />
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TopNavBar",
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters(["userData"]),
   },
 };
 </script>
