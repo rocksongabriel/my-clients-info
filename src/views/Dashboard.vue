@@ -8,7 +8,7 @@
       <div class="flex justify-end py-4 px-7">
         <button
           class="px-4 py-2 text-lg font-extrabold bg-green-500 text-black"
-          @click="showForm()"
+          @click="show_form = !show_form"
         >
           Add New
         </button>
@@ -38,7 +38,7 @@ export default {
   name: "Login",
   data() {
     return {
-      show_form: true,
+      show_form: false,
     };
   },
   components: {

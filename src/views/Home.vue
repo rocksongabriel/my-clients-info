@@ -18,13 +18,15 @@
           py-10
         "
       >
-        Utilize my-clients-data to make your work easier
+        Utilize <span class="text-yellow-500">my-clients-data</span> to make
+        your work easier
       </h1>
       <div class="flex justify-around">
         <router-link
           :to="{ name: 'Signup' }"
           class="
-            p-6
+            px-6
+            py-3
             bg-red-700
             text-xl
             md:text-2xl

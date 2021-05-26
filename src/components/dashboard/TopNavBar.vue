@@ -5,7 +5,7 @@
         <!-- logo -->
         <router-link
           class="text-lg md:text-xl font-bold font-sans text-blue-200"
-          to="{ name: 'Home' }"
+          :to="{ name: 'Home' }"
           >my-clients-data</router-link
         >
       </div>
