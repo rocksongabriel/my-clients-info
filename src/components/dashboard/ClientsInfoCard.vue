@@ -10,7 +10,7 @@
 import ClientCard from "../dashboard/ClientCard";
 
 export default {
-  name: "ClientInfoCard",
+  name: "ClientsInfoCard",
   data() {
     return {
       clients_info: [
