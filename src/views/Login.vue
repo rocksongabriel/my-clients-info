@@ -1,60 +1,88 @@
 <template>
   <div id="login" class="flex justify-around">
-    <form @submit.prevent class="bg-gray-300 p-8 shadow-2xl mt-16 lg:w-1/4">
-      <!-- <h1 class="text-5xl font-mono font-extrabold text-black py-3 text-center">
+    <div class="w-full max-w-xs">
+      <form @submit.prevent class="bg-white shadow-md rounded p-12 mb-4 mt-10">
+        <!-- <h1 class="text-5xl font-mono font-extrabold text-black py-3 text-center">
         LOGIN
       </h1> -->
-      <div class="flex justify-around">
-        <img
-          class="rounded-full shadow-2xl"
-          src="../assets/avatar4.png"
-          alt=""
-          style="height: 80px; width: 80px"
-        />
-      </div>
 
-      <div class="mt-2">
-        <label for="email1" class="form-label">Email</label> <br />
-        <input
-          type="email"
-          name="email"
-          id="email1"
-          placeholder="youremail@domain.com"
-          v-model.trim="loginForm.email"
-          class="input"
-        />
-      </div>
+        <div class="flex justify-around">
+          <img
+            class="rounded-full shadow-2xl"
+            src="../assets/avatar4.png"
+            alt=""
+            style="height: 60px; width: 60px"
+          />
+        </div>
 
-      <div class="mt-3 mb-4">
-        <label for="password1" class="form-label">Password</label> <br />
-        <input
-          type="password"
-          name="password"
-          id="password1"
-          placeholder="***********"
-          v-model.trim="loginForm.password"
-          class="input"
-        />
-      </div>
-
-      <button class="btn-success w-full mb-5" type="submit" @click="login()">
-        Login
-      </button>
-
-      <div class="flex justify-between text-center">
-        <span class="text-blue-600 font-medium text-lg"
-          ><router-link :to="{ name: 'Home' }"
-            >forgot password
-          </router-link></span
+        <h1
+          class="
+            text-gray-800
+            font-thin
+            text-center
+            my-2
+            text-xl
+            border-b-2 border-gray-800
+          "
         >
-        |
-        <span class="text-blue-600 font-medium text-lg"
-          ><router-link :to="{ name: 'Signup' }"
-            >create account
-          </router-link></span
-        >
-      </div>
-    </form>
+          Welcome Back
+        </h1>
+
+        <div class="mb-4">
+          <label class="form-label-2" for="email1"> Email </label>
+          <input
+            class="form-input-2 focus:border-blue-400 border-2"
+            id="email1"
+            type="email"
+            placeholder="youremail@address.com"
+            v-model.trim="loginForm.email"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label-2" for="email1"> Password </label>
+          <input
+            class="form-input-2 focus:border-blue-400 border-2"
+            id="email1"
+            type="password"
+            placeholder="****************"
+            v-model.trim="loginForm.password"
+          />
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button
+            class="
+              bg-blue-500
+              hover:bg-blue-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded
+              focus:outline-none
+              focus:shadow-outline
+            "
+            type="button"
+            @click="login()"
+          >
+            login
+          </button>
+          <a
+            class="
+              inline-block
+              align-baseline
+              font-bold
+              text-sm text-blue-500
+              hover:text-blue-800
+            "
+            href="#"
+          >
+            Forgot Password?
+          </a>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
