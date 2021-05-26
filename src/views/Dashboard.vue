@@ -7,7 +7,18 @@
       <!-- row that has add new button -->
       <div class="flex justify-end py-4 px-7">
         <button
-          class="px-4 py-2 text-lg font-extrabold bg-green-500 text-black"
+          class="
+            px-4
+            py-2
+            text-lg
+            font-extrabold
+            bg-green-500
+            text-black
+            focus:outline-none
+            hover:bg-green-700
+            hover:text-white
+            hover:shadow-xl
+          "
           @click="show_form = !show_form"
         >
           Add New

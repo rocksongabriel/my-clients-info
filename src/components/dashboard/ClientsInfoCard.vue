@@ -1,7 +1,9 @@
 <template>
-  <div class="space-y-6 shadow-2xl">
+  <div class="">
     <div v-for="client in clients_info" :key="client.key">
-      <ClientCard :client="client" />
+      <div class="">
+        <ClientCard :client="client" />
+      </div>
     </div>
   </div>
 </template>
