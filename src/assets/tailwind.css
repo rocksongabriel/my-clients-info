@@ -60,3 +60,11 @@
     leading-tight
     focus:outline-none
 }
+
+.error-text {
+    @apply text-sm text-red-600 font-bold;
+}
+
+.error-field {
+    @apply border-2 border-red-500
+}

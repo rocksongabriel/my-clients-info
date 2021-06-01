@@ -28,6 +28,12 @@
           Welcome Back
         </h1>
 
+        <!-- rendering backend thrown errors -->
+        <div v-if="userErrors.message" class="my-3">
+          <p class="error-text">{{ userErrors.message }}</p>
+        </div>
+
+        <!-- username -->
         <div class="mb-4">
           <label class="form-label-2" for="email1"> Email </label>
           <input
@@ -36,9 +42,26 @@
             type="email"
             placeholder="youremail@address.com"
             v-model.trim="loginForm.email"
+            :class="{
+              'error-field':
+                (submitted && !$v.loginForm.email.required) ||
+                (submitted && !$v.loginForm.email.email),
+            }"
           />
+          <!-- rendering email field related errors -->
+          <!-- rendering the frontend validation errors -->
+          <p
+            class="error-text"
+            v-if="submitted && !$v.loginForm.email.required"
+          >
+            Email field is required
+          </p>
+          <p class="error-text" v-if="submitted && !$v.loginForm.email.email">
+            This field should be an email
+          </p>
         </div>
 
+        <!-- password field --->
         <div class="mb-4">
           <label class="form-label-2" for="password1"> Password </label>
           <input
@@ -47,7 +70,24 @@
             type="password"
             placeholder="****************"
             v-model.trim="loginForm.password"
+            :class="{
+              'error-field': submitted && !$v.loginForm.password.required,
+            }"
           />
+          <!-- rendering the password field related errors -->
+          <!-- rendering the frontend validation errors -->
+          <p
+            class="error-text"
+            v-if="submitted && !$v.loginForm.password.required"
+          >
+            Password field is required
+          </p>
+          <!-- rendering backend validation errors -->
+          <div v-if="userErrors.message" class="my-2">
+            <p class="error-text">
+              Please check your email and password and try again
+            </p>
+          </div>
         </div>
 
         <div class="flex items-center justify-between">
@@ -87,6 +127,9 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   name: "Login",
   data() {
@@ -95,15 +138,41 @@ export default {
         email: "",
         password: "",
       },
+      submitted: false,
     };
   },
-  methods: {
-    login() {
-      this.$store.dispatch("login", {
-        email: this.loginForm.email,
-        password: this.loginForm.password,
-      });
+  validations: {
+    loginForm: {
+      email: { required, email },
+      password: { required },
     },
+  },
+  computed: {
+    ...mapGetters(["userErrors"]),
+  },
+  methods: {
+    ...mapMutations(["REMOVE_ERRORS"]),
+
+    login() {
+      try {
+        this.submitted = true;
+        this.$v.$touch();
+
+        if (!this.$v.loginForm.$error) {
+          // call the login action
+          this.$store.dispatch("login", {
+            email: this.loginForm.email,
+            password: this.loginForm.password,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    // remove the errors
+    this.REMOVE_ERRORS();
   },
 };
 </script>
