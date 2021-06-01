@@ -2,6 +2,15 @@
   <div>
     <TopNavBar />
 
+    <!-- Alert for message -->
+    <div class="flex justify-around">
+      <div class="bg-blue-500 p-4 m-5 w-11/12">
+        <p class="text-base md:text-lg font-bold text-white text-center">
+          {{ userMessage }}
+        </p>
+      </div>
+    </div>
+
     <!-- This is the main working area of the dashboard -->
     <div class="bg-gray-100">
       <!-- row that has add new button -->
@@ -75,7 +84,7 @@ export default {
     AddClientDataForm,
   },
   computed: {
-    ...mapGetters(["userData"]),
+    ...mapGetters(["userData", "userMessage"]),
   },
   methods: {
     logout() {
