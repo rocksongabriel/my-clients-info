@@ -7,56 +7,73 @@ import "firebase/firestore";
 import { auth, usersCollection } from "../../../firebase";
 
 const actions = {
-  async login({ dispatch }, form) {
-    const { user } = await auth.signInWithEmailAndPassword(
-      form.email,
-      form.password
-    );
-
-    // fetch user profile and set in state
-    dispatch("fetchUserProfile", user);
+  async login({ commit, dispatch }, form) {
+    await auth
+      .signInWithEmailAndPassword(form.email, form.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // fetch the user profile
+        dispatch("fetchUserProfile", user);
+        // go to the dashboard
+        router.push({ name: "Dashboard" });
+        // set message
+        commit("UPDATE_MESSAGE", "Login successful");
+        // remove errors
+        commit("REMOVE_ERRORS");
+      })
+      .catch((error) => {
+        commit("UPDATE_ERRORS", error);
+      });
   },
-  async signup({ dispatch }, form) {
+  async signup({ commit, dispatch }, form) {
     // sign user up
-    console.log(form);
-    const { user } = await auth.createUserWithEmailAndPassword(
-      form.email,
-      form.password
-    );
-
-    // create user profile object in userCollections
-    await usersCollection.doc(user.uid).set({
-      username: form.username,
-      email: form.email,
-    });
-
-    // fetch user data
-    dispatch("fetchUserProfile", user);
+    await auth
+      .createUserWithEmailAndPassword(form.email, form.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // create user profile object in userCollections
+        usersCollection.doc(user.uid).set({
+          username: form.username,
+          email: form.email,
+        });
+        // fetch user data
+        dispatch("fetchUserProfile", user);
+        // go to dashboard
+        router.push({ name: "Dashboard" });
+        // set message
+        commit("UPDATE_MESSAGE", "Account created successfully");
+        // remove erros
+        commit("REMOVE_ERRORS");
+      })
+      .catch((error) => {
+        commit("UPDATE_ERRORS", error);
+      });
   },
   async fetchUserProfile({ commit }, user) {
-    // fetch user profile
-    const userProfile = await usersCollection.doc(user.uid).get();
-    console.log(userProfile);
+    await usersCollection
+      .doc(user.uid)
+      .get()
+      .then((userProfile) => {
+        commit("SET_USER_PROFILE", userProfile.data());
 
-    // commit user profile to state
-    commit("SET_USER_PROFILE", userProfile.data());
-
-    // change route to dashboard
-    router.push({ name: "Dashboard" });
+        // remove erorrs
+        commit("REMOVE_ERRORS");
+      })
+      .catch((error) => {
+        commit("UPDATE_ERRORS", error);
+      });
   },
-  async logout({ state }) {
+  async logout({ commit }) {
     await auth
       .signOut()
       .then(() => {
-        console.log("Sign out successful");
-        window.localStorage.removeItem("vuex");
-
+        // remove persisted data from local storage
+        window.localStorage.removeItem("my-clients-info");
         // take the user to the login page after sign out
         router.push({ name: "Login" });
-        state.user = {};
       })
       .catch((error) => {
-        console.log("An error occurred", error.response.data);
+        commit("UPDATE_ERRORS", error);
       });
   },
 };
@@ -64,16 +81,33 @@ const actions = {
 const mutations = {
   SET_USER_PROFILE(state, payload) {
     state.user = payload;
-    console.log(payload);
+  },
+  UPDATE_ERRORS(state, payload) {
+    state.errors = {};
+    state.errors.code = payload.code;
+    state.errors.message = payload.message;
+  },
+  REMOVE_ERRORS(state) {
+    state.errors = {};
+  },
+  UPDATE_MESSAGE(state, payload) {
+    state.message = payload;
   },
 };
 
 const state = {
   user: {},
+  errors: {
+    code: null,
+    message: null,
+  },
+  message: null,
 };
 
 const getters = {
   userData: (state) => state.user,
+  userErrors: (state) => state.errors,
+  userMessage: (state) => state.message,
 };
 
 export default {

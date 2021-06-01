@@ -40,10 +40,10 @@
         </div>
 
         <div class="mb-4">
-          <label class="form-label-2" for="email1"> Password </label>
+          <label class="form-label-2" for="password1"> Password </label>
           <input
             class="form-input-2 focus:border-blue-400 border-2"
-            id="email1"
+            id="password1"
             type="password"
             placeholder="****************"
             v-model.trim="loginForm.password"

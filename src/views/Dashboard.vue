@@ -5,7 +5,24 @@
     <!-- This is the main working area of the dashboard -->
     <div class="bg-gray-100">
       <!-- row that has add new button -->
-      <div class="flex justify-end py-4 px-7">
+      <div class="flex justify-between py-4 px-7">
+        <button
+          class="
+            px-4
+            py-2
+            text-lg
+            font-extrabold
+            bg-red-500
+            text-black
+            focus:outline-none
+            hover:bg-red-700
+            hover:text-white
+            hover:shadow-xl
+          "
+          @click="logout()"
+        >
+          Logout
+        </button>
         <button
           class="
             px-4

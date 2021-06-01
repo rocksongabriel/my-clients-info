@@ -136,7 +136,18 @@
       </div>
 
       <div class="flex justify-around">
-        <button class="px-4 py-2 text-xl bg-green-700 text-white my-2">
+        <button
+          class="
+            px-4
+            py-2
+            text-xl
+            bg-green-600
+            hover:bg-green-700
+            font-bold
+            text-black
+            my-2
+          "
+        >
           Add Client Data
         </button>
       </div>
