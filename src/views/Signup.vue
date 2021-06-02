@@ -22,7 +22,9 @@
       >
         Welcome to our platform
       </h1>
-
+      <div v-if="userErrors.message" class="my-3">
+        <p class="error-text">{{ userErrors.message }}</p>
+      </div>
       <!-- username -->
       <div class="mb-4">
         <label for="username" class="form-label-2">Username</label>
@@ -145,7 +147,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import { email, required, minLength } from "vuelidate/lib/validators";
 
 export default {
@@ -167,6 +169,9 @@ export default {
       email: { email, required },
       password: { required, minLength: minLength(6) },
     },
+  },
+  computed: {
+    ...mapGetters(["userErrors"]),
   },
   methods: {
     ...mapMutations(["REMOVE_ERRORS"]),
@@ -192,6 +197,15 @@ export default {
         }
       } catch (error) {
         console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.REMOVE_ERRORS();
+  },
+  watch: {
+    userErrors: function (newVal, oldVal) {
+      if (newVal.message) {
         this.loading = false;
       }
     },

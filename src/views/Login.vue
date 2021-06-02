@@ -185,5 +185,13 @@ export default {
     // remove the errors
     this.REMOVE_ERRORS();
   },
+
+  watch: {
+    userErrors: function (newVal, oldVal) {
+      if (newVal.message) {
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>
