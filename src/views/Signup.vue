@@ -72,6 +72,12 @@
           type="button"
           @click="signup()"
         >
+          <font-awesome-icon
+            v-if="loading"
+            class="text-black"
+            :class="{ 'animate-spin': loading }"
+            :icon="['fas', 'spinner']"
+          />
           register
         </button>
 
@@ -102,15 +108,23 @@ export default {
         email: "",
         password: "",
       },
+      loading: false,
     };
   },
   methods: {
     signup() {
-      this.$store.dispatch("signup", {
-        username: this.signupForm.username,
-        email: this.signupForm.email,
-        password: this.signupForm.password,
-      });
+      try {
+        // set loading to true
+        this.loading = true;
+        this.$store.dispatch("signup", {
+          username: this.signupForm.username,
+          email: this.signupForm.email,
+          password: this.signupForm.password,
+        });
+      } catch (error) {
+        console.log(error);
+        this.loading = false;
+      }
     },
   },
 };

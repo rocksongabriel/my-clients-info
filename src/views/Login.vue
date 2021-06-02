@@ -17,11 +17,10 @@
 
         <h1
           class="
-            text-gray-800
-            font-thin
-            text-center
+            text-gray-800 text-center
             my-2
             text-xl
+            font-bold
             border-b-2 border-gray-800
           "
         >
@@ -106,6 +105,12 @@
             type="button"
             @click="login()"
           >
+            <font-awesome-icon
+              v-if="loading"
+              class="text-black"
+              :class="{ 'animate-spin': loading }"
+              :icon="['fas', 'spinner']"
+            />
             login
           </button>
           <a
@@ -139,6 +144,7 @@ export default {
         password: "",
       },
       submitted: false,
+      loading: false,
     };
   },
   validations: {
@@ -159,6 +165,10 @@ export default {
         this.$v.$touch();
 
         if (!this.$v.loginForm.$error) {
+          // set loading to true
+          this.loading = true;
+          // remove the existing errors
+          this.REMOVE_ERRORS();
           // call the login action
           this.$store.dispatch("login", {
             email: this.loginForm.email,
@@ -167,6 +177,7 @@ export default {
         }
       } catch (error) {
         console.log(error);
+        this.loading = false; // set loading to false
       }
     },
   },
