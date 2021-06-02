@@ -5,7 +5,7 @@ import store from "./store";
 import "@/assets/styles/main.css";
 import "./assets/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser,faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vuelidate from "vuelidate";
 // import { auth } from "../firebase";

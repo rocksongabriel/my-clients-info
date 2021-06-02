@@ -23,6 +23,7 @@
         Welcome to our platform
       </h1>
 
+      <!-- username -->
       <div class="mb-4">
         <label for="username" class="form-label-2">Username</label>
         <input
@@ -31,9 +32,21 @@
           id="username"
           v-model.trim="signupForm.username"
           class="form-input-2"
+          :class="{
+            'error-field': submitted && !$v.signupForm.username.required,
+          }"
         />
+        <!-- rendering username related errors -->
+        <!-- frontend errors -->
+        <p
+          class="error-text"
+          v-if="submitted && !$v.signupForm.username.required"
+        >
+          Username field is required
+        </p>
       </div>
 
+      <!-- email -->
       <div class="mb-4">
         <label for="email2" class="form-label-2">Email</label>
         <input
@@ -42,9 +55,23 @@
           id="email2"
           v-model.trim="signupForm.email"
           class="form-input-2"
+          :class="{
+            'error-field':
+              (submitted && !$v.signupForm.email.required) ||
+              (submitted && !$v.signupForm.email.email),
+          }"
         />
+        <!-- rendering email related errors -->
+        <!-- frontend errors -->
+        <p class="error-text" v-if="submitted && !$v.signupForm.email.required">
+          Email field is required
+        </p>
+        <p class="error-text" v-if="submitted && !$v.signupForm.email.email">
+          Email entered is not valid
+        </p>
       </div>
 
+      <!-- password -->
       <div class="mb-4">
         <label for="password2" class="form-label-2">Password</label>
         <input
@@ -53,7 +80,26 @@
           id="password2"
           v-model.trim="signupForm.password"
           class="form-input-2"
+          :class="{
+            'error-field':
+              (submitted && !$v.signupForm.password.required) ||
+              (submitted && !$v.signupForm.password.minLength),
+          }"
         />
+        <!-- rendering password related errors -->
+        <!-- frontend errors -->
+        <p
+          class="error-text"
+          v-if="submitted && !$v.signupForm.password.required"
+        >
+          Password is required
+        </p>
+        <p
+          class="error-text"
+          v-if="submitted && !$v.signupForm.password.minLength"
+        >
+          Password should be 6 characters or more
+        </p>
       </div>
 
       <div class="flex items-center justify-between">
@@ -99,6 +145,9 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+import { email, required, minLength } from "vuelidate/lib/validators";
+
 export default {
   name: "Signup",
   data() {
@@ -108,19 +157,39 @@ export default {
         email: "",
         password: "",
       },
+      submitted: false,
       loading: false,
     };
   },
+  validations: {
+    signupForm: {
+      username: { required },
+      email: { email, required },
+      password: { required, minLength: minLength(6) },
+    },
+  },
   methods: {
+    ...mapMutations(["REMOVE_ERRORS"]),
+
     signup() {
       try {
-        // set loading to true
-        this.loading = true;
-        this.$store.dispatch("signup", {
-          username: this.signupForm.username,
-          email: this.signupForm.email,
-          password: this.signupForm.password,
-        });
+        // set submitted to true
+        this.submitted = true;
+        this.$v.$touch();
+
+        // send form to backend if there are no errors in frontend
+        if (!this.$v.signupForm.$error) {
+          // set loading to true
+          this.loading = true;
+          // remove errors brought by backend
+          this.REMOVE_ERRORS();
+
+          this.$store.dispatch("signup", {
+            username: this.signupForm.username,
+            email: this.signupForm.email,
+            password: this.signupForm.password,
+          });
+        }
       } catch (error) {
         console.log(error);
         this.loading = false;
