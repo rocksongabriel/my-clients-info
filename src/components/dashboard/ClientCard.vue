@@ -1,6 +1,6 @@
 <template>
   <div class="p-5 bg-gray-600 rounded-sm shadow-lg text-white">
-    <p class="text-2xl font-bold font-gray-300 text-center mb-2">
+    <p class="text-2xl font-extrabold font-gray-300 text-center mb-2">
       {{ client["Company Name"] }}
     </p>
     <p class="py-2">

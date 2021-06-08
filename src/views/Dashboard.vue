@@ -3,20 +3,27 @@
     <TopNavBar />
 
     <!-- Alert for message -->
-    <div class="flex justify-around" v-if="show_alert">
-      <div
-        class="bg-blue-500 p-4 m-5 w-11/12 flex justify-between align-middle"
-      >
-        <p class="text-base md:text-lg font-bold text-white text-center flex-1">
-          {{ userMessage }}
-        </p>
-        <font-awesome-icon
-          :icon="['fas', 'times']"
-          class="text-red-300 text-xl cursor-pointer hover:text-red-400"
-          @click="show_alert = !show_alert"
-        ></font-awesome-icon>
+    <transition
+      enter-active-class="animate__animated animate__bounceIn"
+      leave-active-class="animate__animated animate__bounceOut"
+    >
+      <div class="flex justify-around" v-if="show_alert">
+        <div
+          class="bg-blue-500 p-4 m-5 w-11/12 flex justify-between align-middle"
+        >
+          <p
+            class="text-base md:text-lg font-bold text-white text-center flex-1"
+          >
+            {{ userMessage }}
+          </p>
+          <font-awesome-icon
+            :icon="['fas', 'times']"
+            class="text-red-300 text-xl cursor-pointer hover:text-red-400"
+            @click="show_alert = !show_alert"
+          ></font-awesome-icon>
+        </div>
       </div>
-    </div>
+    </transition>
 
     <!-- This is the main working area of the dashboard -->
     <div class="">
@@ -60,8 +67,8 @@
 
       <!-- this div will have the new form to add a new client data -->
       <transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut"
+        enter-active-class="animate__animated animate__bounceInDown"
+        leave-active-class="animate__animated animate__bounceOutUp"
       >
         <div class="flex justify-around py-4" v-show="show_form">
           <AddClientDataForm />
@@ -93,7 +100,7 @@ export default {
   data() {
     return {
       show_form: false,
-      show_alert: true,
+      show_alert: false,
     };
   },
   components: {
@@ -116,9 +123,11 @@ export default {
   },
 
   mounted() {
-    if (this.userMessage) {
-      this.show_alert = true;
-    }
+    setTimeout(() => {
+      if (typeof this.userMessage === "string") {
+        this.show_alert = true;
+      }
+    }, 2000);
     // remove the message after 5 seconds
     setTimeout(() => {
       this.REMOVE_MESSAGES();
