@@ -59,15 +59,25 @@
       </div>
 
       <!-- this div will have the new form to add a new client data -->
-      <div class="flex justify-around py-4" v-show="show_form">
-        <AddClientDataForm />
-      </div>
+      <transition
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <div class="flex justify-around py-4" v-show="show_form">
+          <AddClientDataForm />
+        </div>
+      </transition>
 
       <!-- all clients data -->
-      <div class="px-6 py-4">
-        <!-- individual client info -->
-        <ClientsInfoCard />
-      </div>
+      <transition
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <div class="px-6 py-4">
+          <!-- individual client info -->
+          <ClientsInfoCard />
+        </div>
+      </transition>
     </div>
   </div>
 </template>
