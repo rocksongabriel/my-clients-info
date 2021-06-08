@@ -4,7 +4,7 @@
       flex flex-row
       justify-between
       bg-gray-700
-      lg:px-64
+      lg:px-20
       py-3
       px-3
       align-middle

@@ -95,6 +95,9 @@ const mutations = {
   UPDATE_MESSAGE(state, payload) {
     state.message = payload;
   },
+  REMOVE_MESSAGES(state) {
+    state.message = {};
+  }
 };
 
 const state = {

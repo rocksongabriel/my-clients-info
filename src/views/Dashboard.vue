@@ -3,11 +3,18 @@
     <TopNavBar />
 
     <!-- Alert for message -->
-    <div class="flex justify-around">
-      <div class="bg-blue-500 p-4 m-5 w-11/12">
-        <p class="text-base md:text-lg font-bold text-white text-center">
+    <div class="flex justify-around" v-if="show_alert">
+      <div
+        class="bg-blue-500 p-4 m-5 w-11/12 flex justify-between align-middle"
+      >
+        <p class="text-base md:text-lg font-bold text-white text-center flex-1">
           {{ userMessage }}
         </p>
+        <font-awesome-icon
+          :icon="['fas', 'times']"
+          class="text-red-300 text-xl cursor-pointer hover:text-red-400"
+          @click="show_alert = !show_alert"
+        ></font-awesome-icon>
       </div>
     </div>
 
@@ -66,7 +73,7 @@
 </template>
 d
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import TopNavBar from "../components/dashboard/TopNavBar";
 import ClientsInfoCard from "../components/dashboard/ClientsInfoCard";
 import AddClientDataForm from "../components/dashboard/AddClientDataForm";
@@ -76,6 +83,7 @@ export default {
   data() {
     return {
       show_form: false,
+      show_alert: true,
     };
   },
   components: {
@@ -87,12 +95,25 @@ export default {
     ...mapGetters(["userData", "userMessage"]),
   },
   methods: {
+    ...mapMutations(["REMOVE_MESSAGES"]),
+
     logout() {
       this.$store.dispatch("logout");
     },
     showForm() {
       this.show_form = true;
     },
+  },
+
+  mounted() {
+    if (this.userMessage) {
+      this.show_alert = true;
+    }
+    // remove the message after 5 seconds
+    setTimeout(() => {
+      this.REMOVE_MESSAGES();
+      this.show_alert = false;
+    }, 5000);
   },
 };
 </script>

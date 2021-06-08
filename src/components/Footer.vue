@@ -5,7 +5,7 @@
   <footer
     class="
       bg-gray-800
-      lg:px-64
+      lg:px-20
       py-8
       p-3
       flex
