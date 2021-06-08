@@ -19,7 +19,7 @@
     </div>
 
     <!-- This is the main working area of the dashboard -->
-    <div class="bg-gray-100">
+    <div class="">
       <!-- row that has add new button -->
       <div class="flex justify-between py-4 px-7">
         <button

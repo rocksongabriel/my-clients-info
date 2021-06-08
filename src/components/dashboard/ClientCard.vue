@@ -1,16 +1,27 @@
 <template>
-  <div>
-    <div class="flex flex-nowrap overflow-x-auto bg-green-900 shadow-xl">
-      <div
-        class="flex flex-col border-r-2 border-gray-400 px-4"
-        style="flex: 0 0 auto"
-        v-for="(value, name) in client"
-        :key="name"
-      >
-        <p class="text-base py-2 font-medium text-gray-100">{{ name }}</p>
-        <p class="text-xl text-white font-bold pb-3">{{ value }}</p>
-      </div>
-    </div>
+  <div class="p-5 bg-gray-600 rounded-sm shadow-lg text-white">
+    <p class="text-2xl font-bold font-gray-300 text-center mb-2">
+      {{ client["Company Name"] }}
+    </p>
+    <p class="py-2">
+      <span class="font-bold text-green-300">Owner Name: </span>
+      <span>{{ client["Owner Name"] }}</span>
+    </p>
+    <p class="py-2">
+      <span class="font-bold text-green-300">Contact Name: </span>
+      <span>{{ client["Contact Name"] }}</span>
+    </p>
+    <p class="py-2">
+      <span class="font-bold text-green-300">Contact Email: </span>
+      <span>{{ client["Contact Email"] }}</span>
+    </p>
+    <p class="py-2">
+      <span class="font-bold text-green-300">Contact Phone: </span>
+      <span>{{ client["Contact Phone"] }}</span>
+    </p>
+    <p class="text-center mt-5">
+      <a href="#" class="text-red-400">View all info</a>
+    </p>
   </div>
 </template>
 
