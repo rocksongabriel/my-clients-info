@@ -5,23 +5,21 @@
     </p>
 
     <div v-if="show_less">
-      <p v-for="(value, key, idx) in client" :key="key">
+      <p v-for="(value, key, idx) in client" :key="key" class="py-1">
         <template v-if="idx <= 5">
           <span class="font-bold text-green-300 font-lg">{{ key }}: </span>
-          <span>{{ value }}</span>
+          <span class="text-gray-200 font-thin">{{ value }}</span>
         </template>
       </p>
     </div>
     <div v-else>
-      <p v-for="(value, key) in client" :key="key">
-        <template>
-          <span class="font-bold text-green-300 font-lg">{{ key }}: </span>
-          <span>{{ value }}</span>
-        </template>
+      <p v-for="(value, key) in client" :key="key" class="py-1">
+        <span class="font-bold text-green-300 font-lg">{{ key }}: </span>
+        <span class="text-gray-200 font-thin">{{ value }}</span>
       </p>
     </div>
 
-    <p class="text-center mt-5">
+    <p class="text-center">
       <button
         class="
           text-yellow-400 text-lg
@@ -36,10 +34,10 @@
       </button>
       <button
         class="
-          text-yellow-400 text-lg
+          text-red-400 text-lg
           font-bold
           focus:outline-none
-          hover:text-yellow-500
+          hover:text-red-500
         "
         @click="show_less = !show_less"
         v-if="!show_less"
