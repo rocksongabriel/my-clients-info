@@ -46,23 +46,52 @@
         >
           Logout
         </button>
-        <button
-          class="
-            px-4
-            py-2
-            text-lg
-            font-extrabold
-            bg-green-500
-            text-black
-            focus:outline-none
-            hover:bg-green-700
-            hover:text-white
-            hover:shadow-xl
-          "
-          @click="show_form = !show_form"
+        <transition
+          v-if="!show_form"
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
         >
-          Add New
-        </button>
+          <button
+            class="
+              px-4
+              py-2
+              text-lg
+              font-bold
+              bg-green-600
+              text-white
+              focus:outline-none
+              hover:bg-green-700
+              hover:shadow-xl
+              rounded-md
+            "
+            @click="show_form = !show_form"
+          >
+            <font-awesome-icon :icon="['fas', 'plus']" /> Add New
+          </button>
+        </transition>
+        <transition
+          v-else
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+        >
+          <button
+            class="
+              px-4
+              py-2
+              text-lg
+              font-bold
+              bg-red-600
+              text-white
+              focus:outline-none
+              hover:bg-red-700
+              hover:shadow-xl
+              rounded-md
+            "
+            @click="show_form = !show_form"
+          >
+            <font-awesome-icon :icon="['fas', 'plus']" /> Cancel
+          </button>
+        </transition>
       </div>
 
       <!-- this div will have the new form to add a new client data -->

@@ -141,14 +141,15 @@
             px-4
             py-2
             text-xl
-            bg-green-600
-            hover:bg-green-700
+            bg-blue-600
+            hover:bg-blue-700
             font-bold
-            text-black
+            text-white
             my-2
+            rounded-lg
           "
         >
-          Add Client Data
+          submit client info
         </button>
       </div>
     </form>

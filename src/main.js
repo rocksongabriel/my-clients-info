@@ -5,13 +5,20 @@ import store from "./store";
 import "@/assets/styles/main.css";
 import "./assets/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faSpinner,
+  faTimes,
+  faPlus,
+  faArrowDown,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "animate.css";
 import Vuelidate from "vuelidate";
 // import { auth } from "../firebase";
 
-library.add(faUser, faSpinner, faTimes);
+library.add(faUser, faSpinner, faTimes, faPlus, faArrowDown, faArrowUp);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

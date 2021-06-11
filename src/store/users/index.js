@@ -71,7 +71,7 @@ const actions = {
         window.localStorage.removeItem("my-clients-info");
         // take the user to the login page after sign out
         router.push({ name: "Login" });
-        // set message 
+        // set message
         commit("UPDATE_MESSAGE", "You have been signed out successfully");
       })
       .catch((error) => {
@@ -97,7 +97,7 @@ const mutations = {
   },
   REMOVE_MESSAGES(state) {
     state.message = {};
-  }
+  },
 };
 
 const state = {
