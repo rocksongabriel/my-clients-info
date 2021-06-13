@@ -35,6 +35,7 @@ const actions = {
         usersCollection.doc(user.uid).set({
           username: form.username,
           email: form.email,
+          clients: [],
         });
         // fetch user data
         dispatch("fetchUserProfile", user);
